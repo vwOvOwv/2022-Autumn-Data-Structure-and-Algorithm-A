@@ -3,7 +3,7 @@
 using namespace std;
 
 template<class T>
-class List{//线性表
+class List{//线性表类定义
 public:
     void clear();
     bool isEmpty();
@@ -14,8 +14,9 @@ public:
     bool getValue(const int p,T&value);
     bool setValue(const int p,const T value);
 };
+
 template<class T>
-class arrList:public List<T>{//顺序表（向量）
+class arrList:public List<T>{//顺序表（向量）类定义
 private:
     T*aList;//存储顺序表的实例
     int maxLen;//顺序表实例的最大长度
@@ -122,8 +123,147 @@ public:
     }
 };
 
-arrList<int> myArrList(10);
-int main(){
+template<class T>
+class Link{//单向链表的结点类型
+public:
+    T data;
+    Link<T>* next;
+    Link(const T info,Link<T>* nextPtr=NULL){
+        data=info;
+        next=nextPtr;
+    }
+    Link(Link<T>* nextPtr=NULL){
+        next=nextPtr;
+    }
+};
+template<class T>
+class lnkList:public List<T>{//单向链表类定义
+private:
+    Link<T>*head,*tail;
+    Link<T>*setPos(const int i){//返回指向线性表第i个元素的指针值
+        int cnt=0;
+        if(i==-1)//i为-1则定位到头结点
+            return head;
+        Link<T>*p=head->next;
+        while(p!=NULL&&cnt<i){//i为0时定位到第一个结点
+            p=p->next;
+            cnt++;
+        }
+        return p;//指向第i+1个结点，当链表结点数小于i时返回NULL
+    }
+public:
+    lnkList(){//带有头结点的单链表
+        head=tail=new Link<T>;
+    }
+    ~lnkList(){//清除链表
+        Link<T>*tmp;
+        while(head!=NULL){
+            tmp=head;
+            head=head->next;
+            delete tmp;
+        }
+    }
+    bool empty(){
+        if(head->next!=NULL)
+            return false;
+        else
+            return true;    
+    }
+    void clear(){
+        Link<T>*tmp;
+        while(head!=NULL){
+            tmp=head;
+            head=head->next;
+            delete tmp;
+        }
+        head=tail=new Link<T>;
+    }
+    int length(){
+        int cnt=0;
+        Link<T>*tmp=head;
+        while(tmp->next!=NULL){
+            tmp=tmp->next;
+            cnt++;
+        }
+        return cnt;
+    }
+    bool append(const T value){
+        // Link<T> add(value);
+        // tail->next=&add;
+        // tail=&add;
+        Link<T>*p=new Link<T>(value);//p.next=NULL
+        tail->next=p;
+        tail=p;
+        return true;
+    }
+    bool insert(const int i,const T value){//插入数据内容为value的结点作为第i个结点
+        Link<T>*p,*q;
+        if((p=setPos(i-1))==NULL){//没有前驱
+            cout<<"非法插入点"<<endl;
+            return false;
+        } 
+        else{
+            q=new Link<T>(value,p->next);//此时p是前驱,新结点指向右边结点
+            p->next=q;
+            if(p==tail)//相当于append
+                tail=q;
+            return true;
+        }  
+    }
+    bool myDelete(const int i){
+        Link<T>*p=setPos(i),*q=setPos(i-1);
+        if(p==NULL){
+            cout<<"非法删除点"<<endl;
+            return false;
+        }
+        else{
+            q->next=p->next;
+            if(tail==p){
+                tail=q;
+            }
+            delete(p);
+            return true;
+        }
+    }
+    bool getValue(const int i,T&value){
+        Link<T>*p=setPos(i);
+        if(p==NULL){
+            cout<<"非法查找点"<<endl;
+            value=-1;
+            return false;
+        }
+        else{
+            value=p->data;
+            return true;
+        }
+    }
+    bool getPos(int&i,const T value){
+        i=-1;
+        Link<T>*p=head;
+        int cnt=-1;
+        while(p->next!=NULL){
+            p=p->next;
+            cnt++;
+            if(p->data==value){
+                i=cnt;
+                return true;
+            }
+        }
+        cout<<"链表中不存在该值"<<endl;
+        return false;
+    }
+    void print(){
+        Link<T>*p=head;
+        while(p->next!=NULL){
+            p=p->next;
+            cout<<p->data<<' ';
+        }
+        cout<<endl;
+    }
+};
+
+void arrListTest(){//顺序表测试
+    arrList<int> myArrList(10);
     myArrList.print();//初始状态检查
     for(int i=0;i<6;i++)
         myArrList.append(i);//添加元素
@@ -152,5 +292,42 @@ int main(){
     cout<<"posTest="<<posTest<<endl;
     if(myArrList.getPos(posTest,8))//错误查找元素值
     cout<<"posTest="<<posTest<<endl;
+}
+
+void lnkListTest(){//单向链表测试
+    lnkList<int> myLnkList;
+    cout<<myLnkList.empty()<<endl;
+    myLnkList.print();
+    for(int i=0;i<6;i++)
+        myLnkList.append(i);
+    myLnkList.print();
+    cout<<myLnkList.length()<<endl;
+    myLnkList.insert(10,6);
+    myLnkList.print();
+    myLnkList.insert(6,6);
+    myLnkList.print();
+    cout<<myLnkList.length()<<endl;
+    myLnkList.clear();
+    myLnkList.print();
+    cout<<myLnkList.length()<<endl;
+    for(int i=0;i<6;i++)
+        myLnkList.insert(i,i);
+    myLnkList.print();
+    cout<<myLnkList.length()<<endl;
+    myLnkList.myDelete(10);
+    myLnkList.myDelete(0);
+    myLnkList.print();
+    cout<<myLnkList.length()<<endl;
+    int getValueTest,getPosTest;
+    myLnkList.getValue(10,getValueTest);
+    myLnkList.getValue(0,getValueTest);
+    cout<<getValueTest<<endl;
+    myLnkList.getPos(getPosTest,10);
+    myLnkList.getPos(getPosTest,3);
+    cout<<getPosTest<<endl;
+}
+int main(){
+    // arrListTest();
+    lnkListTest();
     return 0;
 }
