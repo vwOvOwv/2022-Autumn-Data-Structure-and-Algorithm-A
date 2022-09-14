@@ -137,10 +137,10 @@ public:
     }
 };
 template<class T>
-class lnkList:public List<T>{//单向链表类定义
+class lnkList:public List<T>{//带头结点的单向链表类定义
 private:
     Link<T>*head,*tail;
-    Link<T>*setPos(const int i){//返回指向线性表第i个元素的指针值
+    Link<T>*setPos(const int i){//返回线性表第i-1个元素的next指针值
         int cnt=0;
         if(i==-1)//i为-1则定位到头结点
             return head;
@@ -149,7 +149,7 @@ private:
             p=p->next;
             cnt++;
         }
-        return p;//指向第i+1个结点，当链表结点数小于i时返回NULL
+        return p;//p指向第i个结点，当链表结点数小于i时返回NULL
     }
 public:
     lnkList(){//带有头结点的单链表
@@ -171,7 +171,7 @@ public:
     }
     void clear(){
         Link<T>*tmp;
-        while(head!=NULL){
+        while(head!=NULL){//头结点也要删掉
             tmp=head;
             head=head->next;
             delete tmp;
