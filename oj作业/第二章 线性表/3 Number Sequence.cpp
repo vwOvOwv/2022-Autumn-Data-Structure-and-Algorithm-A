@@ -31,7 +31,7 @@ int main(){
         for(int j=1;j<=k;j++){//锁定i在123...k中的哪一个具体数字
             int tmp=j;
             int cnt=0;
-            while(tmp!=0){
+            while(tmp!=0){//j的位数
                 cnt++;
                 tmp/=10;
             }
