@@ -3,7 +3,7 @@
 
 using namespace std;
 
-long long int factor(int n){//label0
+long long int factor(int n){//label0 非递归入口
     if(n==0)
         return 1;
     else//rd1
@@ -19,7 +19,7 @@ long long  nonRecFactor(int n){
     stack<stackNode>st;
     stackNode tmp,x;
     tmp.n=n,tmp.rd=0;
-    st.push(tmp);
+    st.push(tmp);//栈底监视哨
 label0:
     tmp=st.top();
     st.pop();
