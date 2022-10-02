@@ -5,7 +5,6 @@
 using namespace std;
 
 vector<string> dic;
-// vector<string> ans;
 void judge(string s){
 	int n=dic.size();
     int l1=s.size();
@@ -34,12 +33,7 @@ void judge(string s){
             for(int k=0;k<l1;k++){
                 string tmp=s;
                 tmp.erase(k,1);//erase(int index,int num)
-                int l=0;
-                for(l=0;l<l2;l++){
-                    if(tmp[l]!=dic[i][l])
-                        break;
-                }
-                if(l==l2){
+                if(tmp.compare(dic[i])==0){
                     cout<<' '<<dic[i];
                     break;
                 }
@@ -49,23 +43,13 @@ void judge(string s){
             for(int k=0;k<l2;k++){
                 string tmp=dic[i];
                 tmp.erase(k,1);//erase(int index,int num)
-                int l=0;
-                for(l=0;l<l1;l++){
-                    if(tmp[l]!=s[l])
-                        break;
-                }
-                if(l==l1){
+                if(tmp.compare(s)==0){
                     cout<<' '<<dic[i];
                     break;
                 }
             }
         }
     }
-    // if(!ans.empty()){
-    //     for(int i=0;i<ans.size()-1;i++)
-    //         cout<<ans[i]<<' ';
-    //     cout<<ans[ans.size()-1]<<endl;
-    // }
     cout<<endl;
 }
 int main(){
@@ -77,14 +61,11 @@ int main(){
             break;
         dic.push_back(s);
     }
-    // for(int i=0;i<dic.size();i++)
-    //     cout<<dic[i]<<endl;
     while(1){
         string s;
         cin>>s;
          if(s=="#")
             break;
-        // ans.clear();
         judge(s);
     }
     return 0;

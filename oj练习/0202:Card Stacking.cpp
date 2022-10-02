@@ -26,7 +26,7 @@ int main(){
             deck.pop();
         }
     }
-    set<int>::iterator kk=ans.begin();//vscode怎么打开c++11？
+    auto kk=ans.begin();
     for(;kk!=ans.end();++kk){
         cout<<(*kk)<<endl;
     }

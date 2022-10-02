@@ -28,22 +28,22 @@ void pop(){
 Node&front(){
     return q[head];
 }
-bool canJump(int nowx,int nowy,int desx,int desy){//判断能不能跳
+bool canJump(int nowx,int nowy,int desx,int desy,int nowstep){//判断能不能跳
     if(desx<0||desx>10||desy<0||desy>10)//越界
         return false;
-    if(visited[desx][desy])//已经跳过或有其他子在这个位置
+    if((visited[desx][desy]&&visited[desx][desy]<nowstep+1)||visited[desx][desy]==-1)//已经跳过且路径更短或有其他子在这个位置
         return false;
     int xx=desx-nowx,yy=desy-nowy;
     if(xx*xx==4){//别脚
-        if(xx==2&&visited[nowx+1][nowy]==2)
+        if(xx==2&&visited[nowx+1][nowy]==-1)
             return false;
-        else if(xx==-2&&visited[nowx-1][nowy]==2)
+        else if(xx==-2&&visited[nowx-1][nowy]==-1)
             return false;
     }
     if(yy*yy==4){//别脚
-        if(yy==2&&visited[nowx][nowy+1]==2)
+        if(yy==2&&visited[nowx][nowy+1]==-1)
             return false;
-        else if(yy==-2&&visited[nowx][nowy-1]==2)
+        else if(yy==-2&&visited[nowx][nowy-1]==-1)
             return false;
     }
     return true;
@@ -68,10 +68,9 @@ void bfs(){
         }
         for(int i=0;i<8;i++){
             int x=p.x+dx[i],y=p.y+dy[i];
-            if(canJump(p.x,p.y,x,y)){
+            if(canJump(p.x,p.y,x,y,p.step)){
                 push(Node(x,y,head,p.step+1));
-                if(x!=ex&&y!=ey)//恰好到达终点的时候不要标记，便于同一层的其他结点再次到达终点，从而可以记录最短路径数目
-                    visited[x][y]=1;
+                    visited[x][y]=p.step+1;
             }
         }
         pop();
@@ -94,7 +93,7 @@ int main(){
     for(int i=0;i<m;i++){
         int x,y;
         cin>>x>>y;
-        visited[x][y]=2;//要与已跳到过的标记区分开
+        visited[x][y]=-1;//要与已跳到过的标记区分开
     }
     bfs();
     return 0;
