@@ -23,7 +23,7 @@ int main(){
         int tag=len-Next[len];
         if(len%tag==0)
             printf("%d\n",len/tag);
-        else
+        else//形如ababa的，首尾配串有重叠
             printf("%d\n",1);
     }
 }
