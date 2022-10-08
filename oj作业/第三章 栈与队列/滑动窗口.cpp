@@ -22,6 +22,7 @@ int main(){//双端单调队列模拟滑动窗口
             mini.pop_back();
         }
         mini.push_back(i);
+        
     }
     rec_maxi.push_back(maxi.front());
     rec_mini.push_back(mini.front());
@@ -29,7 +30,7 @@ int main(){//双端单调队列模拟滑动窗口
         int num;
         cin>>num;
         nums.push_back(num);
-        while(!maxi.empty()&&maxi.front()<=i-k){//先把前面窗口以外的元素去掉
+        while(!maxi.empty()&&maxi.front()<=i-k){//先把窗口以外的元素去掉,入队列的顺序必然导致下标单调递增，因此从前端弹出即可
             maxi.pop_front();
         }
         while(!maxi.empty()&&nums[maxi.back()]<num){
