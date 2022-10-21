@@ -4,7 +4,7 @@
 
 
 void main() {
-	//½¨Ò»¿ÃÊ÷(ÈçÍ¼5.5ËùÊ¾)
+	//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½Í¼5.5ï¿½ï¿½Ê¾)
 	BinaryTree<char> a, b, c, d, e, f, g, h, i,nulltree;
 	d.CreateTree('D', nulltree, nulltree);
 	g.CreateTree('G', nulltree, nulltree);
@@ -16,28 +16,28 @@ void main() {
 	c.CreateTree('C', nulltree, f);
 	a.CreateTree('A', b, c);
 	
-	//Ç°ĞòÖÜÓÎ¶ş²æÊ÷
+	//Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	cout << "Preorder sequence is: "<<endl;
-	a.PreOrder(a.Root());				//µİ¹é
+	a.PreOrder(a.Root());				//ï¿½İ¹ï¿½
 	cout << endl;
 	cout << "Preorder sequence Without Recursion is: " <<endl;
-	a.PreOrderWithoutRecursion(a.Root());//·Çµİ¹é
+	a.PreOrderWithoutRecursion(a.Root());//ï¿½Çµİ¹ï¿½
 	cout << endl;
 
-	//ÖĞĞòÖÜÓÎ¶ş²æÊ÷
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	cout << "Inorder sequence is: "<<endl;
-	a.InOrder(a.Root());			//µİ¹é
+	a.InOrder(a.Root());			//ï¿½İ¹ï¿½
 	cout << endl;
 	cout << "Inorder sequence Without Recursion is: " <<endl;
-	a.InOrderWithoutRecursion(a.Root());//·Çµİ¹é
+	a.InOrderWithoutRecursion(a.Root());//ï¿½Çµİ¹ï¿½
 	cout << endl;
 
-	//ºóĞòÖÜÓÎ¶ş²æÊ÷
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¶ï¿½ï¿½ï¿½ï¿½ï¿½
 	cout << "Postorder sequence is: "<<endl;
-	a.PostOrder(a.Root());			//µİ¹é
+	a.PostOrder(a.Root());			//ï¿½İ¹ï¿½
 	cout << endl;
 	cout << "Postorder sequence Without Recursion is: " <<endl;
-	a.PostOrderWithoutRecursion(a.Root());//·Çµİ¹é	
+	a.PostOrderWithoutRecursion(a.Root());//ï¿½Çµİ¹ï¿½	
 	cout << endl;	
 
 	//root
@@ -45,7 +45,7 @@ void main() {
 
 /*	//delete tree
 	a.DeleteBinaryTree(a.Root());
-	cout<<"Tree is deleted."<<endl;        //Ã»ÓĞÎÊÌâ£¬ÔÚÎö¹¹º¯ÊıÖĞµ÷ÓÃ
+	cout<<"Tree is deleted."<<endl;        //Ã»ï¿½ï¿½ï¿½ï¿½ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğµï¿½ï¿½ï¿½
 */
 
 }
