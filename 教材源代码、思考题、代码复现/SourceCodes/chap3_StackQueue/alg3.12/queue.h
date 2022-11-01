@@ -23,11 +23,11 @@ public: 								// 队列的运算集
    	bool enQueue(T item)  { 				//  item入队，插入队尾
 		if (((rear + 1 ) % mSize) == front) {
 			cout << "队列已满，溢出" << endl;
-			return false；
+			return false;
 		}
 		qu[rear] = item;
 		rear = (rear +1) % mSize;  			// 循环后继
-		return true；
+		return true;
 	}
  	bool deQueue(T& item)  {     			// 返回队头元素并从队列中删除
 		if ( front == rear)  {
