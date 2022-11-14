@@ -1,21 +1,21 @@
-// Í¼µÄÏàÁÚ¾ØÕó±íÊ¾·½·¨,»¹ÒªÓÃµ½×îÐ¡Öµ¶Ñ
+// Í¼ï¿½ï¿½ï¿½ï¿½ï¿½Ú¾ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Òªï¿½Ãµï¿½ï¿½ï¿½Ð¡Öµï¿½ï¿½
 #include <iostream>
 #include <queue>
 #define UNVISITED 0
 #define VISITED 1
-#define INFINITE 9999    //ÉèÖÃ×î´óÖµ
-#define N 5 // ¶¨ÒåÍ¼µÄ¶¥µãÊý
+#define INFINITE 9999    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+#define N 5 // ï¿½ï¿½ï¿½ï¿½Í¼ï¿½Ä¶ï¿½ï¿½ï¿½ï¿½ï¿½
 using namespace std;
 #include "Graph_matrix.h"
 #include "MinHeap.h"
 
 
-//[´úÂë7.8] DijkstraËã·¨
-class Dist  {      //¶¨ÒåDistÀà£¬ÏÂÃæµÄDijkstraËã·¨ºÍFloydËã·¨ÒªÓÃµ½
+//[ï¿½ï¿½ï¿½ï¿½7.8] Dijkstraï¿½ã·¨
+class Dist  {      //ï¿½ï¿½ï¿½ï¿½Distï¿½à£¬ï¿½ï¿½ï¿½ï¿½ï¿½Dijkstraï¿½ã·¨ï¿½ï¿½Floydï¿½ã·¨Òªï¿½Ãµï¿½
  public:
-	 int index;      //¶¥µãµÄË÷ÒýÖµ£¬½öDijkstraËã·¨»áÓÃµ½
-	 int length;     //¶¥µãÖ®¼äµÄ¾àÀë
-	 int pre;       //Â·¾¶×îºó¾­¹ýµÄ¶¥µã
+	 int index;      //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½Dijkstraï¿½ã·¨ï¿½ï¿½ï¿½Ãµï¿½
+	 int length;     //ï¿½ï¿½ï¿½ï¿½Ö®ï¿½ï¿½Ä¾ï¿½ï¿½ï¿½
+	 int pre;       //Â·ï¿½ï¿½ï¿½ï¿½ó¾­¹ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 	 Dist() {};
 	 ~Dist() {};
 
@@ -36,17 +36,17 @@ class Dist  {      //¶¨ÒåDistÀà£¬ÏÂÃæµÄDijkstraËã·¨ºÍFloydËã·¨ÒªÓÃµ½
 	 }
 };
 
-//DijkstraËã·¨£¬ÆäÖÐ²ÎÊýGÊÇÍ¼£¬²ÎÊýsÊÇÔ´¶¥µã£¬DÊÇ±£´æ×î¶Ì¾àÀë¼°ÆäÂ·¾¶µÄÊý×é
+//Dijkstraï¿½ã·¨ï¿½ï¿½ï¿½ï¿½ï¿½Ð²ï¿½ï¿½ï¿½Gï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½Ô´ï¿½ï¿½ï¿½ã£¬Dï¿½Ç±ï¿½ï¿½ï¿½ï¿½ï¿½Ì¾ï¿½ï¿½ë¼°ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void Dijkstra(Graph& G, int s, Dist* &D)  {
-	D = new Dist[G. VerticesNum()];          	// DÊý×é
-	for (int i = 0; i < G.VerticesNum(); i++) {   	// ³õÊ¼»¯MarkÊý×é¡¢DÊý×é
+	D = new Dist[G. VerticesNum()];          	// Dï¿½ï¿½ï¿½ï¿½
+	for (int i = 0; i < G.VerticesNum(); i++) {   	// ï¿½ï¿½Ê¼ï¿½ï¿½Markï¿½ï¿½ï¿½é¡¢Dï¿½ï¿½ï¿½ï¿½
 		G.Mark[i] = UNVISITED;
         D[i].index = i;
         D[i].length = INFINITE;
         D[i].pre = s;
     }
     D[s].length = 0; 
-    MinHeap<Dist> H(G. EdgesNum());       	// ×îÐ¡Öµ¶Ñ£¨minheap£©
+    MinHeap<Dist> H(G. EdgesNum());       	// ï¿½ï¿½Ð¡Öµï¿½Ñ£ï¿½minheapï¿½ï¿½
     H.Insert(D[s]);
 	int i;
 	for (i = 0; i < G.VerticesNum(); i++) {
@@ -54,13 +54,13 @@ void Dijkstra(Graph& G, int s, Dist* &D)  {
         Dist d;
         while (!H.isEmpty())  {
 			d = H.RemoveMin(); 
-			if(G.Mark[d.index]==UNVISITED) {                //´òÓ¡³öÂ·¾¶ÐÅÏ¢
+			if(G.Mark[d.index]==UNVISITED) {                //ï¿½ï¿½Ó¡ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½Ï¢
 				cout<< "vertex index: " <<d.index<<"   ";
 				cout<< "vertex pre  : " <<d.pre  <<"   ";
 				cout<< "V0 --> V" << d.index <<"  length    : " <<d.length<<endl;
 			}
 			
-			if (G.Mark[d.index] == UNVISITED) { //ÕÒµ½¾àÀës×î½üµÄ¶¥µã
+			if (G.Mark[d.index] == UNVISITED) { //ï¿½Òµï¿½ï¿½ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½Ä¶ï¿½ï¿½ï¿½
 				FOUND = true;
 				break;
 			}
@@ -68,8 +68,8 @@ void Dijkstra(Graph& G, int s, Dist* &D)  {
 		if (!FOUND)
             break;
         int v = d.index;
-		G.Mark[v] = VISITED;           		// °Ñ¸Ãµã¼ÓÈëÒÑ·ÃÎÊ×é
-		// ÒòÎªvµÄ¼ÓÈë£¬ÐèÒªË¢ÐÂvÁÚ½ÓµãµÄDÖµ
+		G.Mark[v] = VISITED;           		// ï¿½Ñ¸Ãµï¿½ï¿½ï¿½ï¿½ï¿½Ñ·ï¿½ï¿½ï¿½ï¿½ï¿½
+		// ï¿½ï¿½Îªvï¿½Ä¼ï¿½ï¿½ë£¬ï¿½ï¿½ÒªË¢ï¿½ï¿½vï¿½Ú½Óµï¿½ï¿½DÖµ
 		for (Edge e = G.FirstEdge(v); G.IsEdge(e);e = G.NextEdge(e))
 			if (D[G.ToVertex(e)].length > (D[v].length+G.Weight(e))) {
 				D[G.ToVertex(e)].length = D[v].length+G.Weight(e);
@@ -81,7 +81,7 @@ void Dijkstra(Graph& G, int s, Dist* &D)  {
 
 
 
-int A[N][N] =  {          //Í¼7.20  µ¥Ô´×î¶ÌÂ·¾¶µÄÊ¾Àý
+int A[N][N] =  {          //Í¼7.20  ï¿½ï¿½Ô´ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½
 //  v0  v1  v2  v3  v4  
 	 0, 10,  0, 30, 100,
      0,  0, 50,  0,  0, 
@@ -92,8 +92,8 @@ int A[N][N] =  {          //Í¼7.20  µ¥Ô´×î¶ÌÂ·¾¶µÄÊ¾Àý
 
 int main()
 {
- Graphm aGraphm(N); // ½¨Á¢Í¼
- aGraphm.IniGraphm(&aGraphm, A); // ³õÊ¼»¯Í¼
+ Graphm aGraphm(N); // ï¿½ï¿½ï¿½ï¿½Í¼
+ aGraphm.IniGraphm(&aGraphm, A); // ï¿½ï¿½Ê¼ï¿½ï¿½Í¼
  Dist *D;
  Dijkstra(aGraphm, 0, D);
  return 0;

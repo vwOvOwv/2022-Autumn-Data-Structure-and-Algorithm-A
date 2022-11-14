@@ -1,4 +1,4 @@
-/****************  算法5.12 堆的类定义和筛选法  **********************/
+/****************  ??5.12 ????????????  **********************/
 /****************           MinHeap.h           **********************/
 
 #include <iostream>
@@ -8,37 +8,37 @@ using namespace std;
 #define TRUE 1
 
 template <class T>
-class MinHeap  { 							//最小堆类定义
+class MinHeap  { 							//??С??????
 private:
-	T* heapArray;							//存放堆数据的数组
-	int CurrentSize;						//当前堆中元素数目
-	int MaxSize;							//堆所能容纳的最大元素数目
-	void swap(int pos_x, int pos_y);		//交换位置x和y的元素
-	void BuildHeap();						//建堆
+	T* heapArray;							//?????????????
+	int CurrentSize;						//?????????????
+	int MaxSize;							//????????????????????
+	void swap(int pos_x, int pos_y);		//????λ??x??y?????
+	void BuildHeap();						//????
 public:
-	MinHeap(const int n);				 //构造函数,n表示初始化堆的最大元素数目
-	virtual ~MinHeap(){delete []heapArray;}; 	//析构函数
-	bool isEmpty( );							// 如果堆空，则返回真
-    bool isLeaf(int pos) const;		 	    //如果是叶结点，返回TRUE
-	int leftchild(int pos) const;		   	//返回左孩子位置
-	int rightchild(int pos) const;			//返回右孩子位置
-	int parent(int pos) const;				//返回父结点位置
-	bool Remove(int pos, T& node);			//删除给定下标的元素
-	bool Insert(const T& newNode);			//向堆中插入新元素newNode
-	T& RemoveMin();				        	//从堆顶删除最小值
-	void SiftUp(int position);			 //从position向上开始调整，使序列成为堆
-	void SiftDown(int left);             //筛选法函数，参数left表示开始处理的数组下标
+	MinHeap(const int n);				 //??????,n????????????????????
+	virtual ~MinHeap(){delete []heapArray;}; 	//????????
+	bool isEmpty( );							// ????????????
+    bool isLeaf(int pos) const;		 	    //?????????????TRUE
+	int leftchild(int pos) const;		   	//????????λ??
+	int rightchild(int pos) const;			//?????????λ??
+	int parent(int pos) const;				//????????λ??
+	bool Remove(int pos, T& node);			//????????±?????
+	bool Insert(const T& newNode);			//????в????????newNode
+	T& RemoveMin();				        	//?????????С?
+	void SiftUp(int position);			 //??position????????????????г????
+	void SiftDown(int left);             //??????????????left?????????????????±?
 };
 template<class T>
 MinHeap<T>::MinHeap(const int n)  {
 	if(n <= 0)
 		return;
 	CurrentSize = 0;													
-	MaxSize = n;						//初始化堆容量为n
-	heapArray = new T[MaxSize];		    //创建堆空间
+	MaxSize = n;						//????????????n
+	heapArray = new T[MaxSize];		    //????????
 
-	//此处进行堆元素的赋值工作
-	heapArray[0] = 19;                 //亦可以用插入的办法构造
+	//??????ж???????????
+	heapArray[0] = 19;                 //??????ò?????????
 	heapArray[1] = 8;
 	heapArray[2] = 35;
 	heapArray[3] = 65;
@@ -52,7 +52,7 @@ MinHeap<T>::MinHeap(const int n)  {
 }
 
 template<class T>
-bool MinHeap<T>::isEmpty()  {			// 如果堆空，则返回真{
+bool MinHeap<T>::isEmpty()  {			// ????????????{
 	return ((CurrentSize)?false:true);
 }
 
@@ -63,37 +63,37 @@ bool MinHeap<T>::isLeaf(int pos) const  {
 
 template<class T>
 void MinHeap<T>::BuildHeap()  {
-	for (int i = CurrentSize/2-1; i >= 0; i--) 	//反复调用筛选函数
+	for (int i = CurrentSize/2-1; i >= 0; i--) 	//??????????????
 		SiftDown(i);
 }
 
 template<class T>
 int MinHeap<T>::leftchild(int pos) const  {
-	return 2*pos + 1;						//返回左孩子位置
+	return 2*pos + 1;						//????????λ??
 }
 
 template<class T>
 int MinHeap<T>::rightchild(int pos) const  {
-	return 2*pos + 2;						  //返回右孩子位置
+	return 2*pos + 2;						  //?????????λ??
 }
 
 template<class T>
 int MinHeap<T>::parent(int pos) const  {
-	return (pos-1)/2;						   //返回父结点位置
+	return (pos-1)/2;						   //????????λ??
 }
 
 template <class T>
-bool MinHeap<T>::Insert(const T& newNode)  {  //向堆中插入新元素newNode
-	if(CurrentSize == MaxSize)				   //堆空间已经满
+bool MinHeap<T>::Insert(const T& newNode)  {  //????в????????newNode
+	if(CurrentSize == MaxSize)				   //?????????
 		return FALSE;
 	heapArray[CurrentSize] = newNode;
-	SiftUp(CurrentSize);					   //向上调整
+	SiftUp(CurrentSize);					   //???????
 	CurrentSize++;
 	return TRUE;
 }
 
 template<class T>
-void MinHeap<T>::SiftUp(int position)  {    //从position向上开始调整，使序列成为堆
+void MinHeap<T>::SiftUp(int position)  {    //??position????????????????г????
 	int temppos = position;
 	T temp = heapArray[temppos];
 	while ((temppos>0) && (heapArray[parent(temppos)]>temp))  {
@@ -104,7 +104,7 @@ void MinHeap<T>::SiftUp(int position)  {    //从position向上开始调整，使序列成为
 }
 
 template<class T>
-void MinHeap<T>::swap(int pos_x, int pos_y)     //交换位置x和y的元素
+void MinHeap<T>::swap(int pos_x, int pos_y)     //????λ??x??y?????
 {
  T temp = heapArray[pos_x];
  heapArray[pos_x] = heapArray[pos_y];
@@ -112,43 +112,43 @@ void MinHeap<T>::swap(int pos_x, int pos_y)     //交换位置x和y的元素
 }
 
 template<class T>
-T& MinHeap<T>::RemoveMin()	 {				//从堆顶删除最小值
+T& MinHeap<T>::RemoveMin()	 {				//?????????С?
 	if (CurrentSize == 0)  {
 		cout<< "Can't Delete" <<endl;
 	}
 	else  {
-		swap(0,--CurrentSize);					//交换堆顶和最后一个元素
+		swap(0,--CurrentSize);					//??????????????????
 		if(CurrentSize>1)
-			SiftDown(0);						//从堆顶开始筛选
+			SiftDown(0);						//?????????
 		return heapArray[CurrentSize];
 	}
 }
 
 template<class T>
-bool MinHeap<T>::Remove(int pos, T& node)  {   	// 删除给定下标的元素
+bool MinHeap<T>::Remove(int pos, T& node)  {   	// ????????±?????
 	if ((pos < 0) || (pos >= CurrentSize))
 		return false;
 	node = heapArray[pos];
-	heapArray[pos] = heapArray[--CurrentSize];		// 用最后的元素值替代删除位置的元素
+	heapArray[pos] = heapArray[--CurrentSize];		// ????????????????λ??????
     	if (heapArray[parent(pos)] > heapArray[pos]) 	
-		SiftUp(pos);						// 当前元素小于父结点，需要上升调整
-	else SiftDown(pos);						// 当前元素大于父结点，向下筛
+		SiftUp(pos);						// ??????С?????????????????
+	else SiftDown(pos);						// ??????????????????
 	return true;
 }
 
 
 template <class T>
 void MinHeap<T>::SiftDown(int left)  {
-	int i = left;								// 标识父结点
-	int j = leftchild (i);							// 标识关键值较小的子结点
-	T	temp = heapArray[i];					// 保存父结点
-	while (j < CurrentSize) {       			    // 过筛
+	int i = left;								// ????????
+	int j = leftchild (i);							// ?????????С??????
+	T	temp = heapArray[i];					// ???游???
+	while (j < CurrentSize) {       			    // ???
 		if ((j < CurrentSize-1) && (heapArray[j]>heapArray[j + 1]))
-			j++;								// j指向右子结点
+			j++;								// j?????????
 		if (temp>heapArray[j]) {
 			heapArray[i] = heapArray[j];
 			i = j;
-			j = leftchild(j);						// 向下继续
+			j = leftchild(j);						// ???????
 		}
 		else break;
 	}
