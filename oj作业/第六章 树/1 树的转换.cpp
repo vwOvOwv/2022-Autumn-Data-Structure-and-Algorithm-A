@@ -40,7 +40,7 @@ int main(){
             return 0;
         t++;
         int n=tree.length();
-        //序列转换成树
+        //利用栈序列转换成树
         stack<TreeNode*>rec;
         TreeNode*root=new TreeNode;
         rec.push(root);

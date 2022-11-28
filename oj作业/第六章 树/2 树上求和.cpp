@@ -25,11 +25,11 @@ bool dfs(int sum){//用返回值传递结点是否为空！true为空，false为
     int minus=1,val=0;
     if(c=='-'){
         minus=-1;//trick
-        c=getchar();
+        c=getValidChar();
     }
     while(c>='0'&&c<='9'){
         val=val*10+(c-'0');
-        c=getchar();
+        c=getValidChar();
     }
     //多读了一位，放回去！
     ungetc(c,stdin);

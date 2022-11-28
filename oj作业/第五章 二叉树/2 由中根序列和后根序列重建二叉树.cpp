@@ -46,7 +46,7 @@ int main(){
     }
     n/=2;
     for(int i=0;i<n;i++)
-        hash_table[inorder[i]]=i;
+        hash_table[inorder[i]]=i;//重要的简化
     TreeNode*root=buildTree(inorder,postorder,0,n-1,0,n-1);
     preOrder(root);
     for(int i=0;i<n;i++){

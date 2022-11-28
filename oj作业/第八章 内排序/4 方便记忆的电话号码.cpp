@@ -32,7 +32,7 @@ int main(){
     int n;
     cin>>n;
     string num;
-    bool found=false;//标记是否有多次出现的好吗
+    bool found=false;//标记是否有多次出现的号码
     for(int i=0;i<n;i++){
         cin>>num;
         string rec;

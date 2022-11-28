@@ -13,7 +13,6 @@ int main(){
         }
         length[i]=length[i-1]+cnt;
     }
-    // cout<<length[maxi-1]<<endl;
     cin>>t;
     while(t--){
         int i;
@@ -21,13 +20,11 @@ int main(){
         int k=1;
         for(k=1;k<=maxi-1;k++){//锁定第i位所在的123...k的k
             i-=length[k];
-            if(i<=0){
+            if(i<=0){//注意是<=0
                 i+=length[k];
                 break;
             }
         }
-        // cout<<k<<endl;
-        // cout<<i<<endl;//
         for(int j=1;j<=k;j++){//锁定i在123...k中的哪一个具体数字
             int tmp=j;
             int cnt=0;
@@ -36,19 +33,15 @@ int main(){
                 tmp/=10;
             }
             i-=cnt;
-            // cout<<i<<endl;
-            if(i<=0){
+            if(i<=0){//注意是<=0
                 i+=cnt;
-                // cout<<j<<endl;
-                // cout<<i<<endl;//
                 for(int r=0;r<cnt-i;r++){//注意要i与j位数的关系
                     j/=10;
                 }
                 cout<<j%10<<endl;
-                goto loop;
+                break;
             }
         }
-        loop:;
     }
     return 0;
 }

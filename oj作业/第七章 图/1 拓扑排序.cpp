@@ -12,7 +12,7 @@ int calInDegree(vector<vector<int> >Graph,vector<int>visited,int v,int n){
     return cnt;
 }
 
-void topSort(vector<vector<int> >Graph,int n){//不同版本的一个拓扑排序
+void topSort(vector<vector<int> >Graph,int n){//不同版本的拓扑排序
     queue<int>q;
     vector<int>visited(n+1,0);
     vector<int>rec;

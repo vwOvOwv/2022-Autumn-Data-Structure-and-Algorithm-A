@@ -15,7 +15,7 @@ int main(){
             maxpos=i;
         }
     }
-    s1.insert(maxpos+1,s2);//前插入
+    s1.insert(maxpos+1,s2);//插入，注意位置关系
     cout<<s1<<endl;
     }
 }

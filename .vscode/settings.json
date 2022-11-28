@@ -5,6 +5,10 @@
         "__locale": "cpp",
         "__string": "cpp",
         "vector": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "iosfwd": "cpp",
+        "__tree": "cpp",
+        "ostream": "cpp",
+        "deque": "cpp"
     }
 }

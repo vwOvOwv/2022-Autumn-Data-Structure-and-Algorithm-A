@@ -60,7 +60,6 @@ int main(){
                 break;
             TreeNode*p=new TreeNode(s.back());
             int d=cnt(s);
-            // cout<<"depth="<<d<<endl;//
             rec.push_back(make_pair(p,d));
         }
         int size=rec.size();

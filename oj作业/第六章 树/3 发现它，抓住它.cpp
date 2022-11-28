@@ -54,7 +54,7 @@ int main(){
             if(ch=='A'){
                 if(Find(crime1)==Find(crime2))
                     cout<<"In the same gang."<<endl;
-                else if(Find(crime1)==Find(crime2+n))//Find(crime1+n)==find(crime2)也可
+                else if(Find(crime1)==Find(crime2+n))//Find(crime1+n)==Find(crime2)也可
                     cout<<"In different gangs."<<endl;
                 else
                     cout<<"Not sure yet."<<endl;
@@ -64,10 +64,6 @@ int main(){
                 Union(crime1,crime2+n);
                 Union(crime1+n,crime2);
             }
-        }
-        //test
-        for(int i=1;i<=2*n;i++){
-            cout<<rec[i].father<<' ';
         }
     }
     return 0;
