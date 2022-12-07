@@ -19,7 +19,7 @@ int merge(int*v,int n,int left,int right,int mid){
             v[index++]=tmp[index1++];
     }
     if(index1<=mid){
-        cnt+=(mid-index1)*(right-mid);//why?
+        cnt+=(mid-index1)*(right-mid);
         while(index1<=mid)
             v[index++]=tmp[index1++];
     }

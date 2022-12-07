@@ -1,20 +1,48 @@
 #include<iostream>
 #include<vector>
+#include<string>
 #include<algorithm>
+#include<queue>
 
 using namespace std;
+
+priority_queue<int>Greater;
+priority_queue<int,vector<int>,greater<int> >Less;
+
+void balance(){
+    if(Greater.size()>Less.size()+1){
+        Less.push(Greater.top());
+        Greater.pop();
+    }
+    else if(Greater.size()<Less.size()){
+        Greater.push(Less.top());
+        Less.pop();
+    }
+}
+
+void push(int num){
+    if(Greater.empty()){
+        Greater.push(num);
+        return;
+    }
+    int mid=Greater.top();
+    if(num<mid){
+        Greater.push(num);
+    }
+    else{
+        Less.push(num);
+    }
+    balance();
+}
 
 int main(){
     int n;
     cin>>n;
-    vector<int>rec(n+1);
-    for(int i=1;i<=n;i++){
-        cin>>rec[i];
+    int num;
+    for(int i=0;i<n;i++){
+        cin>>num;
+        push(num);
+        if(i%2==0)
+            cout<<Greater.top()<<endl;
     }
-    for(int k=1;k<=n;k+=2){
-        sort(rec.begin()+1,rec.begin()+k+1);
-        int mid=(1+k)/2;
-        cout<<rec[mid]<<endl;
-    }
-    return 0;
 }
