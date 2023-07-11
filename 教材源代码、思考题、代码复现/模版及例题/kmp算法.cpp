@@ -22,7 +22,7 @@ void getNext(string p,int *next){
 
 int kmp(string p,string t){
     int plen=p.size(),tlen=t.size();
-    if(plen>tlen)
+    if(plen>tlen)   
         return -1;
     int i=0,j=0;
     int *next=new int[plen];
